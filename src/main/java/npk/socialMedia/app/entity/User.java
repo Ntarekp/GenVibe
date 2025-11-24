@@ -15,7 +15,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long Id;
+    private Long  user_id;
 
     @Column(nullable=false,length = 100)
     @NotBlank(message = "Username cannot be blank")
@@ -38,5 +38,9 @@ public class User {
 
     @Column(name = "profile_picture_url")
     private String profilePicture;
+
+    // Relationship mapping
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Post> posts; // Set of posts created by this user
 
 }
